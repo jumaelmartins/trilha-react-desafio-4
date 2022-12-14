@@ -3,7 +3,6 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useNavigate } from "react-router-dom";
 
 import { Container, LoginContainer, Column, Spacing, Title } from "./styles";
 import { defaultValues, IFormLogin } from "./types";
@@ -18,7 +17,7 @@ const schema = yup
   })
   .required();
 
-const Login = () => {
+const Feed = () => {
   const {
     control,
     formState: { errors, isValid },
@@ -29,18 +28,8 @@ const Login = () => {
     reValidateMode: "onChange",
   });
 
+  console.log(isValid)
 
-  const navigate = useNavigate();
-
-  const CheckIsValid = () => {
-    if (isValid) {
-      navigate('/Feed')
-    } else {
-      console.log('email ou senha invalido')
-    }
-  }
-
-  
   return (
     <Container>
       <LoginContainer>
@@ -62,11 +51,11 @@ const Login = () => {
             errorMessage={errors?.password?.message}
           />
           <Spacing />
-          <Button title="Entrar"  disabled={isValid} onClick={CheckIsValid}/>
+          <Button title="Entrar"  disabled={isValid}/>
         </Column>
       </LoginContainer>
     </Container>
   );
 };
 
-export default Login;
+export default Feed;
